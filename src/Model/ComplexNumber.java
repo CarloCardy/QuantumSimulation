@@ -31,7 +31,24 @@ public class ComplexNumber {
 
     @Override
     public String toString() {
-        return "{"+ real + ","+imaginary+"}";
+
+        int app;
+        String out="";
+
+        if (real ==0 && imaginary== 0) return "0";
+
+        if (real!=0){
+            app = (int)(double)real;
+            if (real-app==0) out=""+app;
+            else out=""+real;
+        }
+
+        if(imaginary !=0) {
+            app = (int) (double) imaginary;
+            if (imaginary - app == 0) out += "+i" + app;
+            else out += "+i" + imaginary;
+        }
+        return out;
     }
 
     @Override
@@ -39,4 +56,35 @@ public class ComplexNumber {
         ComplexNumber that = (ComplexNumber) o;
         return Objects.equals(real, that.real) && Objects.equals(imaginary, that.imaginary);
     }
+
+    public Double sqModule(){
+        return ((real*real)+(imaginary*imaginary));
+    }
+
+    public Double module(){
+        return Math.sqrt(sqModule());
+    }
+
+    public void selfNegate(){
+        real=-real;
+        imaginary=-imaginary;
+    }
+
+    public ComplexNumber retNegate(){
+        return new ComplexNumber(-real,-imaginary);
+    }
+
+    public void selfConiugate(){
+        imaginary=-imaginary;
+    }
+
+    public ComplexNumber retConiugate() {
+        return new ComplexNumber(real,-imaginary);
+    }
+
+    public ComplexNumber clone(){
+        return new ComplexNumber(real,imaginary);
+    }
+
+
 }
