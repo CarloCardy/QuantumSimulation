@@ -7,19 +7,12 @@ import java.util.Arrays;
 public class ComplexMatrix {
 
     ComplexNumber[][] matrix;
+
     public ComplexMatrix(ComplexNumber[][] matrix){
         this.matrix=matrix;
     }
 
-    public ComplexNumber[][] getMatrix() {
-        return matrix;
-    }
-
-    public void setMatrix(ComplexNumber[][] matrix) {
-        this.matrix = matrix;
-    }
-
-    //la matrice per costruzione del Factory è perforza rettangolare quindi ogni riga e colonna hanno dimensioni uguali con le rispettive righe e colonne
+    //la matrice per costruzione del Factory è obbligatoriamente  rettangolare quindi ogni riga e colonna hanno dimensioni uguali con le rispettive righe e colonne
     public int getRows(){
         return matrix.length;
     }
@@ -33,7 +26,7 @@ public class ComplexMatrix {
         matrix[row][col]=element;
     }
 
-    public ComplexNumber getElement (int row, int col){return matrix[row][col];}
+    public ComplexNumber getElement (int row, int col){return matrix[row][col].clone();}
 
     public void selfNegate (){
         for (int i = 0; i < getRows() ; i++) {
@@ -57,20 +50,16 @@ public class ComplexMatrix {
         return new ComplexMatrix(innerClone());
     }
 
-
     @Override
     public String toString() {
 
-        int max=0;
+        int max=3;
         for (int row = 0; row < getRows(); row++) {
             for (int col = 0; col < getColumns(); col++) {
                 if (max< matrix[row][col].toString().length()) max=matrix[row][col].toString().length();
             }
         }
         max++;
-
-        if (max< 3) max=3;
-
          String out = "";
         for (int row = 0; row < getRows(); row++) {
             for (int col = 0; col < getColumns(); col++) {

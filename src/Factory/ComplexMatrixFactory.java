@@ -8,7 +8,7 @@ public interface ComplexMatrixFactory {
      ComplexNumber empty = new ComplexNumber(0,0);
      ComplexNumber unitary = new ComplexNumber(1,0);
 
-    static ComplexMatrix emptyBuild(int row , int col){
+    static ComplexMatrix emptyMatrix(int row , int col){
         ComplexNumber [][] matrix = new ComplexNumber[row][col] ;
 
         for (int i = 0; i < row; i++) {
@@ -18,7 +18,8 @@ public interface ComplexMatrixFactory {
         }
         return new ComplexMatrix(matrix);
     }
-    static ComplexMatrix identityBuild (int dim){
+
+    static ComplexMatrix identityMatrix (int dim){
         ComplexNumber [][] matrix = new ComplexNumber[dim][dim] ;
 
         for (int i = 0; i < dim; i++) {
