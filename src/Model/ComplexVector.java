@@ -13,17 +13,23 @@ public class ComplexVector {
         this.vector = vector;
     }
 
+    //get Method
+
     public int getLenght() {
         return vector.length;
     }
 
-    public ComplexNumber getElement(int pos) {
-        return vector[pos].clone();
-    }
+    public ComplexNumber getElement(int pos) {return vector[pos];}
+
+    public ComplexNumber getCopyOfElement(int pos) {return vector[pos].clone();}
+
+    //set Method
 
     public void setElement(int pos, ComplexNumber element) {
-        vector[pos] = element;
+        vector[pos].setBoth(element);
     }
+
+    //generic Method
 
     public ComplexNumber[] innerClone() {
         ComplexNumber[] out = new ComplexNumber[getLenght()];
@@ -35,12 +41,6 @@ public class ComplexVector {
 
     public ComplexVector clone() {
         return new ComplexVector(innerClone());
-    }
-
-    public void selfNegate() {
-        for (int i = 0; i < getLenght(); i++) {
-            vector[i].selfNegate();
-        }
     }
 
     @Override
@@ -57,5 +57,14 @@ public class ComplexVector {
         }
 
         return out;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (!(o instanceof ComplexVector vector1)) return false;
+        if (vector1.getLenght() != getLenght()) return false;
+        for (int i = 0; i < getLenght(); i++) if (vector1.getElement(i).equals(getElement(i))) return false;
+        return true;
     }
 }

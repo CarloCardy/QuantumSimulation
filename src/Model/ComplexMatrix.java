@@ -4,6 +4,7 @@ import Factory.ComplexMatrixFactory;
 
 import java.util.Arrays;
 
+
 public class ComplexMatrix {
 
     ComplexNumber[][] matrix;
@@ -12,7 +13,9 @@ public class ComplexMatrix {
         this.matrix=matrix;
     }
 
-    //la matrice per costruzione del Factory è obbligatoriamente  rettangolare quindi ogni riga e colonna hanno dimensioni uguali con le rispettive righe e colonne
+    //matrici Rettangolari
+
+    //get Method
     public int getRows(){
         return matrix.length;
     }
@@ -22,19 +25,14 @@ public class ComplexMatrix {
         return 0;
     }
 
-    public void setElement(int row,int col ,ComplexNumber element){
-        matrix[row][col]=element;
-    }
+    public ComplexNumber getElement (int row, int col){return matrix[row][col];}
 
-    public ComplexNumber getElement (int row, int col){return matrix[row][col].clone();}
+    public ComplexNumber getCopyOfElement (int row, int col){return matrix[row][col].clone();}
 
-    public void selfNegate (){
-        for (int i = 0; i < getRows() ; i++) {
-            for (int j = 0; j < getColumns(); j++) {
-                matrix[i][j].selfNegate();
-            }
-        }
-    }
+    //set Method
+    public void setElement(int row,int col ,ComplexNumber element){ matrix[row][col].setBoth(element);}
+
+    //generic method
 
     private ComplexNumber[][] innerClone(){
         ComplexNumber[][] cloneM = new ComplexNumber[getRows()][getColumns()];
@@ -71,4 +69,19 @@ public class ComplexMatrix {
         return out;
     }
 
+    @Override
+    public boolean equals(Object o) {
+
+        if (!(o instanceof ComplexMatrix cM)) return false;
+
+        if (getRows() != cM.getRows() || getColumns() != cM.getColumns()) return false;
+
+        for (int i = 0; i <getRows() ; i++) {
+            for (int j = 0; j < getColumns(); j++) {
+                if (!getElement(i,j).equals(cM.getElement(i,j))) return false;
+            }
+        }
+        
+        return true;
+    }
 }

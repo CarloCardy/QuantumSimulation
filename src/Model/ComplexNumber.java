@@ -12,6 +12,7 @@ public class ComplexNumber {
         this.imaginary = imaginary;
     }
 
+    //get method
     public Double getImaginary() {
         return imaginary;
     }
@@ -20,6 +21,7 @@ public class ComplexNumber {
         return real;
     }
 
+    //set method
     public void setImaginary(Double imaginary) {
         this.imaginary = imaginary;
     }
@@ -28,7 +30,14 @@ public class ComplexNumber {
         this.real = real;
     }
 
+    public void setBoth(Double real, Double imaginary){
+        this.real=real;
+        this.imaginary=imaginary;
+    }
 
+    public void setBoth(ComplexNumber complexNumber){setBoth(complexNumber.getReal(),complexNumber.getImaginary());}
+
+    //generic method
     @Override
     public String toString() {
 
@@ -53,33 +62,9 @@ public class ComplexNumber {
 
     @Override
     public boolean equals(Object o) {
+        if (!(o instanceof ComplexNumber)) return false;
         ComplexNumber that = (ComplexNumber) o;
         return Objects.equals(real, that.real) && Objects.equals(imaginary, that.imaginary);
-    }
-
-    public Double sqModule(){
-        return ((real*real)+(imaginary*imaginary));
-    }
-
-    public Double module(){
-        return Math.sqrt(sqModule());
-    }
-
-    public void selfNegate(){
-        real=-real;
-        imaginary=-imaginary;
-    }
-
-    public ComplexNumber retNegate(){
-        return new ComplexNumber(-real,-imaginary);
-    }
-
-    public void selfConiugate(){
-        imaginary=-imaginary;
-    }
-
-    public ComplexNumber retConiugate() {
-        return new ComplexNumber(real,-imaginary);
     }
 
     public ComplexNumber clone(){
