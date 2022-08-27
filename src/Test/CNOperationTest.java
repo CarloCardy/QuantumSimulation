@@ -47,7 +47,7 @@ public class CNOperationTest {
     @Test
     public void coniugateTest(){
         ComplexNumber res = new ComplexNumber(2,-2);
-        Assert.assertEquals(NumberOp.coniugate(a),res);
+        Assert.assertEquals(NumberOp.conjugate(a),res);
     }
     @Test
     public void prodTest(){

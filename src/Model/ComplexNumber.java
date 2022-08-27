@@ -63,8 +63,9 @@ public class ComplexNumber {
     @Override
     public boolean equals(Object o) {
         if (!(o instanceof ComplexNumber)) return false;
+
         ComplexNumber that = (ComplexNumber) o;
-        return Objects.equals(real, that.real) && Objects.equals(imaginary, that.imaginary);
+        return (Math.abs(real - that.real) < Constant.epsilon && Math.abs(imaginary - that.imaginary) < Constant.epsilon);
     }
 
     public ComplexNumber clone(){

@@ -3,6 +3,7 @@ package Operation;
 import Factory.ComplexVectorFactory;
 import Model.ComplexNumber;
 import Model.ComplexVector;
+import Model.Constant;
 
 public interface VectorOp {
 
@@ -42,6 +43,23 @@ public interface VectorOp {
     {
         ComplexVector out =complexVector.clone();
         selfScalarProduct(out,sclar);
+        return out;
+    }
+
+    static double sumOfSqModule (ComplexVector vector){
+        double sum = 0;
+        for (int i = 0; i < vector.getLenght(); i++) sum += NumberOp.sqModule(vector.getElement(i));
+        return sum;
+    }
+
+    static ComplexNumber innerProd(ComplexVector a,ComplexVector b) {
+        if (a.getLenght()!=b.getLenght()) return null;
+        ComplexNumber out = Constant.empty.clone();
+        for (int i = 0; i < a.getLenght(); i++) {
+            ComplexNumber app=NumberOp.conjugate(a.getElement(i));
+            NumberOp.prodTF(app,b.getElement(i));
+            NumberOp.addTF(out,app);
+        }
         return out;
     }
 

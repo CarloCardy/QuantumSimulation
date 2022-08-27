@@ -32,6 +32,8 @@ public class ComplexMatrix {
     //set Method
     public void setElement(int row,int col ,ComplexNumber element){ matrix[row][col].setBoth(element);}
 
+    public void replaceElement(int row,int col ,ComplexNumber element){matrix[row][col]=element;}
+
     //generic method
 
     private ComplexNumber[][] innerClone(){

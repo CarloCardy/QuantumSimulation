@@ -45,9 +45,15 @@ public interface NumberOp {
         else a.setBoth(((a.getReal()*b.getReal()+(a.getImaginary())*b.getImaginary())/sqMod),(((b.getReal()*a.getImaginary())-(a.getReal()*b.getImaginary()))/sqMod));
         return true;
     }
+
     static void selfNegate(ComplexNumber a){a.setBoth(-a.getReal(),-a.getImaginary());}
 
-    static void selfConiugate(ComplexNumber a){a.setImaginary(-a.getImaginary());}
+    static void selfConjugate(ComplexNumber a){a.setImaginary(-a.getImaginary());}
+
+    static boolean isReal(ComplexNumber complexNumber){
+        return complexNumber.equals(new ComplexNumber(complexNumber.getReal(),0));
+    }
+
     //Output Operation
     static Double angle(ComplexNumber complexNumber){return Math.atan2(complexNumber.getImaginary(),complexNumber.getReal());}
 
@@ -61,7 +67,7 @@ public interface NumberOp {
 
     static ComplexNumber negate(ComplexNumber complexNumber){return new ComplexNumber(-complexNumber.getReal(),-complexNumber.getImaginary());}
 
-    static ComplexNumber coniugate(ComplexNumber complexNumber){return new ComplexNumber(complexNumber.getReal(),-complexNumber.getImaginary());}
+    static ComplexNumber conjugate(ComplexNumber complexNumber){return new ComplexNumber(complexNumber.getReal(),-complexNumber.getImaginary());}
 
     static ComplexNumber prod(ComplexNumber a , ComplexNumber b){
         ComplexNumber out = a.clone();
