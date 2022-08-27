@@ -1,5 +1,6 @@
 package Model;
 
+import java.text.DecimalFormat;
 import java.util.Objects;
 
 public class ComplexNumber {
@@ -41,21 +42,30 @@ public class ComplexNumber {
     @Override
     public String toString() {
 
+        DecimalFormat df = new DecimalFormat("#.###");
         int app;
         String out="";
 
         if (real ==0 && imaginary== 0) return "0";
+        if (this.equals(Constant.mod1rad2))return "√2/2+i√2/2";
 
         if (real!=0){
             app = (int)(double)real;
             if (real-app==0) out=""+app;
-            else out=""+real;
+            else if (Math.abs(real) == (Math.sqrt(2)/2)){
+                if (real<0)out+="-";
+                out+="√2/2";
+            }
+            else out=""+df.format(real);
         }
 
         if(imaginary !=0) {
+            if (imaginary>0) out +="+i";
+            else out +="-i";
             app = (int) (double) imaginary;
-            if (imaginary - app == 0) out += "+i" + app;
-            else out += "+i" + imaginary;
+            if (imaginary - app == 0) out +=Math.abs(app);
+            else if (Math.abs(imaginary) == (Math.sqrt(2)/2)) out+="√2/2";
+            else out+=df.format(Math.abs(imaginary));
         }
         return out;
     }

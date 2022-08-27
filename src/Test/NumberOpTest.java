@@ -5,7 +5,7 @@ import Operation.NumberOp;
 import org.junit.Assert;
 import org.junit.Test;
 
-public class CNOperationTest {
+public class NumberOpTest {
 
 
     ComplexNumber a = new ComplexNumber(2,2);
